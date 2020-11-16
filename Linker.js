@@ -3,8 +3,8 @@
 // @version      1.2
 // @description  quick link selectors
 // @author       Arekusei
-// @match        *://pixelplanet.fun/*
-// @match        *://fuckyouarkeros.fun/*
+// @include      *://pixelplanet.fun/*
+// @include      *://fuckyouarkeros.fun/*
 // @updateURL    https://raw.githubusercontent.com/Arsenicus/Linker/main/Linker.js
 // @downloadURL  https://raw.githubusercontent.com/Arsenicus/Linker/main/Linker.js
 
