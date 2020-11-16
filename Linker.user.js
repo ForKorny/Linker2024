@@ -5,8 +5,8 @@
 // @author       Arekusei
 // @include      *://pixelplanet.fun/*
 // @include      *://fuckyouarkeros.fun/*
-// @updateURL    https://raw.githubusercontent.com/Arsenicus/Linker/main/Linker.js
-// @downloadURL  https://raw.githubusercontent.com/Arsenicus/Linker/main/Linker.js
+// @updateURL    https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
+// @downloadURL  https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
 
 // ==/UserScript==
 
