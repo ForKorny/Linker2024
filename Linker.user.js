@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Link Selector
-// @version      1.2
+// @version      1.3
 // @description  quick link selectors
 // @author       Arekusei
 // @include      *://pixelplanet.fun/*
@@ -121,5 +121,19 @@ window.addEventListener('load', function() {
         }
         skillList.removeChild(this.closest("p"));
     }
+    
+function changePos(x) {
+  if (x.matches) { // If media query matches
+    document.getElementById("Linker").style.left = "60px";
+    document.getElementById("Linker").style.bottom = "100px";
+  } else {
+    document.getElementById("Linker").style.left = "185px";
+    document.getElementById("Linker").style.bottom = "16px";
+  }
+}
 
+    var x = window.matchMedia("(max-width: 900px)")
+    changePos(x) // Call listener function at run time
+    x.addListener(changePos) // Attach listener function on state changes
+    
 }, false);
