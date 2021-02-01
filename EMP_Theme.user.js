@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PPF Theme
-// @version      1.0
+// @version      1.1
 // @description  Set new theme
 // @author       Arekusei
 // @include      *://pixelplanet.fun/*
@@ -48,13 +48,27 @@ a:hover {
 tr:nth-child(even) {
   background-color: #292929;
 }
+.no-selection {
+  background: black !important;
+}
 
 .chatbox {
-  background-color: #565656;
+  background-color: #000000f2;
 }
+
 .chatbox.show {
 	z-index: 1;
 }
+
+.msg.event {
+	color: gold !important;
+}
+
+.mention {
+	color: aqua !important;
+}
+
+
 .actionbuttons, .coorbox, .onlinebox, .cooldownbox, .palettebox, #historyselect, .notifybox {
   background-color: #e86f18db;
   color: black;
@@ -112,7 +126,7 @@ tr:nth-child(even) {
   color: white;
 }
 .chatname {
-  color: chartreuse;
+  color: chartreuse !important;
 }
 .msg.info{
   color: #ff91a6;
@@ -147,7 +161,7 @@ element.style {
     margin-bottom: 0px;
 }
 ::-webkit-scrollbar {
-    background-color: #202324;
+    background-color: #1b1a1a;
     color: #aba499;
 }
 ::-webkit-scrollbar-thumb {
