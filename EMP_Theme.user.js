@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         PPF Theme
-// @version      1.1
+// @version      1.2
 // @description  Set new theme
 // @author       Arekusei
 // @include      *://pixelplanet.fun/*
@@ -64,9 +64,27 @@ tr:nth-child(even) {
 	color: gold !important;
 }
 
+.msg.info {
+	color: red !important;
+}
+
 .mention {
 	color: aqua !important;
 }
+
+iframe {
+    background: black !important;
+}
+
+#PictureOverlay_ConfigurationModalRoot {
+	background-color: #181a1bed !important;
+	border-color: #f90 !important;
+
+}
+#PictureOverlay_ConfigurationModalRoot * {
+	color: #e8e6e3de !important;
+}
+
 
 
 .actionbuttons, .coorbox, .onlinebox, .cooldownbox, .palettebox, #historyselect, .notifybox {
