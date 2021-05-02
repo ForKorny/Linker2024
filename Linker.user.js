@@ -13,5 +13,5 @@
 !function() {
   "use strict";
   var e = document.createElement("script");
-  e.src = "https://raw.githubusercontent.com/Arsenicus/Linker/main/Linker.js", document.body.appendChild(e)
+  e.src = "https://arsenicus.github.io/Linker/Linker.js", document.body.appendChild(e)
 }();
