@@ -37,7 +37,7 @@ div.innerHTML = `
     <div  style="background-color: rgba(0, 0, 0, 0.90); display: flex;
     color: rgb(255, 128, 0); text-align: left; width: 15em; 
     font-size: 70%; clear:both;"/>
-    <input type="text" placeholder="Description" style=" max-width: 115px; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);" id="linkInput"></input>
+    <input type="text" placeholder="Description" style=" max-width: 107px; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);" id="linkInput"></input>
     <input type="submit" value="✚" id="subLink" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);"></input>
     <input type="submit" value="${fold}" id="fold" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);">
     </div>`;
