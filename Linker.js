@@ -30,12 +30,12 @@ div.style.cssText = "left: 185px; color: #FF8000;  position:absolute; bottom:16p
 
 div.innerHTML = `
     <div  id="linkView" style=" top: 0em; background-color: rgba(0, 0, 0, 0.99);
-    color: rgb(255, 128, 0); text-align: left; width: 15em; height: 200px; overflow-y: scroll;
+    color: rgb(255, 128, 0); text-align: left;  height: 200px; overflow-y: scroll;
     font-size: 70%; clear:both; z-index: 1; display: ${foldState} ;">
 
     </div>
     <div  style="background-color: rgba(0, 0, 0, 0.90); display: flex;
-    color: rgb(255, 128, 0); text-align: left; width: 15em; 
+    color: rgb(255, 128, 0); text-align: left; 
     font-size: 70%; clear:both;"/>
     <input type="text" placeholder="Description" style=" max-width: 107px; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);" id="linkInput"></input>
     <input type="submit" value="✚" id="subLink" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);"></input>
