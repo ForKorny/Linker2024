@@ -26,12 +26,12 @@ foldState = foldState == null ? "block" : foldState;
 fold = foldState == "block" ? '⇩' : "⇧";
 var div = document.createElement('div');
 div.setAttribute('id', 'Linker');
-div.style.cssText = "left: 185px; color: #FF8000;  position:absolute; bottom:16px; border: 2px solid rgb(255, 128, 0); ";
+div.style.cssText = "left: 185px; color: #FF8000;  position:absolute; z-index: 1; bottom:16px; border: 2px solid rgb(255, 128, 0); ";
 
 div.innerHTML = `
     <div  id="linkView" style=" top: 0em; background-color: rgba(0, 0, 0, 0.99);
     color: rgb(255, 128, 0); text-align: left;  height: 200px; overflow-y: scroll;
-    font-size: 70%; clear:both; z-index: 1; display: ${foldState} ;">
+    font-size: 70%; clear:both; display: ${foldState} ;">
 
     </div>
     <div  style="background-color: rgba(0, 0, 0, 0.90); display: flex;
