@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Link Selector
-// @version      1.3
+// @version      1.4
 // @description  quick link selectors
 // @author       Arekusei
 // @include      *://pixelplanet.fun/*
