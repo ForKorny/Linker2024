@@ -13,7 +13,7 @@
 
 var loadedLinks = JSON.parse(window.localStorage.getItem('Linker'));
 var storeLinks = [];
-if (loadedLinks !== "") {
+if ((loadedLinks !== "") && (loadedLinks !== null)) {
     storeLinks = loadedLinks;
     console.log(storeLinks);
 } else {
