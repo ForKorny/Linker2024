@@ -9,7 +9,7 @@
 // @downloadURL  https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
 
 // ==/UserScript==
-if ( ! /#/.test(location.hash) ) return;
+
 (function() {
 
 var loadedLinks = JSON.parse(window.localStorage.getItem('Linker'));
