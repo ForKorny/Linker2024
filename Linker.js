@@ -3,12 +3,13 @@
 // @version      1.4
 // @description  quick link selectors
 // @author       Arekusei
-// @include      *://pixelplanet.fun/*
+// @include      *://pixelplanet.fun/#*
 // @include      *://fuckyouarkeros.fun/*
 // @updateURL    https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
 // @downloadURL  https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
 
 // ==/UserScript==
+if ( ! /#/.test(location.hash) ) return;
 (function() {
 
 var loadedLinks = JSON.parse(window.localStorage.getItem('Linker'));
