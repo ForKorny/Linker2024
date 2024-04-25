@@ -3,10 +3,19 @@
 // @version      1.4
 // @description  quick link selectors
 // @author       Arekusei
-// @include      *://pixelplanet.fun/#*
-// @include      *://fuckyouarkeros.fun/*
-// @updateURL    https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
-// @downloadURL  https://github.com/Arsenicus/Linker/raw/main/Linker.user.js
+// @match      *://pixelplanet.fun/*
+// @match      *://fuckyouarkeros.fun/*
+// @match      *://pixmap.fun/*
+// @match      *://pixuniverse.fun/*
+// @match      *://pixelya.fun/*
+// @match      *://globalpixel.xyz/*
+// @match      *://planetcanvas.online/*
+// @match      *://pxgame.xyz/*
+// @match      *://pixarea.fun/*
+// @match      *://pixland.fun/*
+// @match      *://canvaspixel.net/*
+// @updateURL    https://github.com/ForKorny/Linker2024/raw/main/Linker.user.js
+// @downloadURL  https://github.com/ForKorny/Linker2024/raw/main/Linker.user.js
 
 // ==/UserScript==
 
@@ -25,11 +34,13 @@ if ((loadedLinks !== "") && (loadedLinks !== null)) {
 var foldState = window.localStorage.getItem('LinkerFold');
 foldState = foldState == null ? "block" : foldState;
 fold = foldState == "block" ? '⇩' : "⇧";
+
 var div = document.createElement('div');
 div.setAttribute('id', 'Linker');
-div.style.cssText = "left: 185px; color: #FF8000;  position:absolute; z-index: 1; bottom:16px; border: 2px solid rgb(255, 128, 0); ";
+div.style.cssText = "left: 185px; color: #FF8000;  position:absolute; z-index: 1; border: 2px solid rgb(255, 128, 0); left: 62px; top: 62px;";
 
 div.innerHTML = `
+    <div id="Mover" style="cursor: move; text-align: center; min-width: 170; background-color: black; border: 2px solid rgb(255, 128, 0); color: rgb(255, 128, 0);">⬍ ᠅ ⬌</div>
     <div  id="linkView" style=" top: 0em; background-color: rgba(0, 0, 0, 0.99);
     color: rgb(255, 128, 0); text-align: left;  height: 200px; overflow-y: scroll;
     font-size: 70%; clear:both; display: ${foldState} ;">
@@ -38,8 +49,9 @@ div.innerHTML = `
     <div  style="background-color: rgba(0, 0, 0, 0.90); display: flex;
     color: rgb(255, 128, 0); text-align: left; 
     font-size: 70%; clear:both;"/>
-    <input type="text" placeholder="Description" style=" max-width: 107px; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);" id="linkInput"></input>
+    <input type="text" placeholder="Description" style=" max-width: 110px; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);" id="linkInput"></input>
     <input type="submit" value="✚" id="subLink" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);"></input>
+    <input type="submit" value="⍗" id="dovlink" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);"></input>
     <input type="submit" value="${fold}" id="fold" style=" width: 20pt; background-color: black; border-color: #8b4000; color: rgb(255, 128, 0);">
     </div>`;
 
@@ -90,6 +102,29 @@ addStyle(`
 
     `)
 
+var isDragging = false;
+
+var offsetX, offsetY;
+
+function startDrag(e) {
+    isDragging = true;
+    offsetX = e.clientX - document.getElementById('Linker').getBoundingClientRect().left;
+    offsetY = e.clientY - document.getElementById('Linker').getBoundingClientRect().top;
+}
+
+function endDrag() {
+    window.localStorage.setItem('positionLinker', JSON.stringify([document.getElementById('Linker').style.left,
+    document.getElementById('Linker').style.top]));
+    isDragging = false;
+}
+
+function drag(e) {
+    if (isDragging) {
+
+        document.getElementById('Linker').style.left = (e.clientX - offsetX) + 'px';
+        document.getElementById('Linker').style.top = (e.clientY - offsetY) + 'px';
+    }
+}
 
 var linkList = document.querySelector("#linkView");
 var oLinks = "";
@@ -114,7 +149,16 @@ if (loadedLinks !== null) {
 
 var newSkill = document.querySelector("#linkInput");
 var btnSetLink = document.getElementById("subLink");
+var btnDovlink = document.getElementById("dovlink");
+var draggableDiv = document.getElementById('Mover');
+
 btnSetLink.addEventListener("click", addLink);
+btnDovlink.addEventListener("click", downloadlinks);
+
+draggableDiv.addEventListener('mousedown', startDrag);
+document.addEventListener('mouseup', endDrag);
+document.addEventListener('mousemove', drag);
+checkPos();
 
 document.getElementById("fold").onclick = function() {
     var state = document.getElementById("linkView").style.display
@@ -138,11 +182,14 @@ function addLink() {
     // if (newSkill.value == "") {
     //     newSkill.value = window.location.hash;
     // }
+    var windowloc = window.location
+    var windowhref = new URL(window.location.href).hostname
     newSkill.value = newSkill.value || window.location.hash || "Link";
     storeLinks.push([newSkill.value, document.URL]);
-    console.log(storeLinks);
     window.localStorage.setItem('Linker', JSON.stringify(storeLinks));
+    
 
+    //console.log(storeLinks);
     // Don't build new HTML by concatenating strings. Create elements and configure them as objects
     var p = document.createElement("p");
     var attr = document.createAttribute('draggable');
@@ -151,6 +198,7 @@ function addLink() {
 
     //p.style.cssText = `overflow: auto; background: #d2691e3d;margin-block: 5px;`;
     p.innerHTML += '<a href=' + document.URL + '>' + newSkill.value + '</a>';
+
 
     // Only use hyperlinks for navigation, not to have something to click on. Any element can be clicked
     var span = document.createElement("BUTTON");
@@ -189,21 +237,29 @@ function removeSkill() {
     //slist("linkView");
 }
 
-function changePos(x) {
+/*function changePos(x) {
     if (x.matches) { // If media query matches
         document.getElementById("Linker").style.left = "60px";
         document.getElementById("Linker").style.bottom = "100px";
     } else {
-        document.getElementById("Linker").style.left = "185px";
-        document.getElementById("Linker").style.bottom = "16px";
+        document.getElementById("Linker").style.left = "60px";
+        document.getElementById("Linker").style.top = "60px";
     }
 }
 
 var x = window.matchMedia("(max-width: 900px)")
 changePos(x) // Call listener function at run time
-x.addListener(changePos) // Attach listener function on state changes
+x.addListener(changePos) // Attach listener function on state changes*/
 
-
+function checkPos() {
+    var posS = JSON.parse(window.localStorage.getItem("positionLinker"));
+    if (posS) {
+        console.log(posS, posS[0], posS[1])
+        document.getElementById('Linker').style.left = posS[0]
+        console.log(document.getElementById('Linker').style.left)
+        document.getElementById('Linker').style.top = posS[1]
+    }
+}
 
 function dragStart(e) {
     this.style.opacity = '0.4';
@@ -313,5 +369,15 @@ var swapArrayElements = function(arr, indexA, indexB) {
     arr[indexA] = arr[indexB];
     arr[indexB] = temp;
 };
+
+function downloadlinks() {
+    if (loadedLinks) {
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(new Blob([loadedLinks], {type: "application/json"}));
+        link.download = "links.json";
+        link.click();
+        document.body.removeChild(link);
+    };
+}
 
 })();
